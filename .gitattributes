@@ -1,0 +1,27 @@
+# 统一换行符与二进制文件处理，避免 Windows/macOS 互相改出"整文件变更"
+* text=auto eol=lf
+
+# 代码/文档文本
+*.ino   text eol=lf
+*.h     text eol=lf
+*.cpp   text eol=lf
+*.py    text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf
+*.yaml  text eol=lf
+
+# PowerShell 脚本保持 CRLF
+*.ps1   text eol=crlf
+
+# 二进制：不做换行转换、不谈 diff
+*.HMI    binary
+*.tft    binary
+*.kmodel binary
+*.hex    binary
+*.elf    binary
+*.bin    binary
+*.eep    binary
+*.pdf    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
