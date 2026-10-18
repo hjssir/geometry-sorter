@@ -12,15 +12,31 @@
 ## 编译与烧录
 
 - 板卡：Arduino Mega 2560（ATmega2560，256 KB Flash / 8 KB SRAM / 4 KB EEPROM）
-- 依赖库：`AccelStepper`（版本待固化）
-- **当前状态（2026-10-18）**：本机 PATH 里没有 `avr-g++` / `arduino-cli`，工作区也没有构建脚本 → **"0 错 0 警告"目前不可复现**（看板 B3）
-- 阶段 1-6 要求：装 `arduino-cli` + 固定 AVR core 版本 + 固定 AccelStepper，固化一条可重复命令，写回本 README，例如：
+- 工具链（2026-10-18 实测并固定）：
+
+| 组件 | 版本 | 位置 |
+|---|---|---|
+| `arduino-cli` | **1.5.2-rc.1** | `%LOCALAPPDATA%\Programs\arduino-cli\`（已加入用户 PATH） |
+| `arduino:avr` core | **1.8.8** | `%LOCALAPPDATA%\Arduino15\packages\arduino\hardware\avr\1.8.8` |
+| `avr-gcc` | **7.3.0-atmel3.6.1-arduino7** | Arduino15 内 |
+| `AccelStepper` | **1.64** | `%USERPROFILE%\Documents\Arduino\libraries` |
+
+- **一条命令**（`_build/` 被 gitignore，不污染仓库）：
 
 ```powershell
-# 待工具链装好后替换为真实命令，并把版本号写死
-arduino-cli compile --fqbn arduino:avr:mega --output-dir _build .
-arduino-cli upload  --fqbn arduino:avr:mega -p COMx .
+.\10_主控_Arduino\compile.ps1                      # 编译
+.\10_主控_Arduino\compile.ps1 -Upload -Port COM5   # 编译 + 烧录
 ```
+
+- 裸命令（Arduino 要求 sketch 目录名 = `.ino` 名，脚本会自动暂存到 `_build/AutoMeasureSort/`）：
+
+```powershell
+arduino-cli compile --fqbn arduino:avr:mega --warnings more --output-dir _build/out _build/AutoMeasureSort
+```
+
+- **实测结果（2026-10-18）**：`0 错误 0 警告`；Flash **17,824 B（7%）**；全局变量 **1,369 B（16%）**，剩 6,823 B
+- ⚠️ 警告口径：`--warnings more`（= `-Wall`）本工程 0 警告；`--warnings all`（= `-Wextra`）会多出 **5 条来自 Arduino core `new.cpp` 的上游警告**，不是本工程代码。验收统一用 `more`
+- 细节与历史记录：`99_调试记录/2026-10-18_工具链与编译/记录.md`
 
 ## 运行与日志
 

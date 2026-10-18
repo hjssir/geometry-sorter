@@ -1,0 +1,26 @@
+﻿C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp: In function 'void* operator new(std::size_t, std::nothrow_t)':
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp:59:60: warning: unused parameter 'tag' [-Wunused-parameter]
+ void * operator new(std::size_t size, const std::nothrow_t tag) noexcept {
+                                                            ^~~
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp: In function 'void* operator new [](std::size_t, const std::nothrow_t&)':
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp:68:63: warning: unused parameter 'tag' [-Wunused-parameter]
+ void * operator new[](std::size_t size, const std::nothrow_t& tag) noexcept {
+                                                               ^~~
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp: In function 'void operator delete(void*, const std::nothrow_t&)':
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp:103:55: warning: unused parameter 'tag' [-Wunused-parameter]
+ void operator delete(void* ptr, const std::nothrow_t& tag) noexcept {
+                                                       ^~~
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp: In function 'void operator delete [](void*, const std::nothrow_t&)':
+C:\Users\aochaoji\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.8\cores\arduino\new.cpp:106:57: warning: unused parameter 'tag' [-Wunused-parameter]
+ void operator delete[](void* ptr, const std::nothrow_t& tag) noexcept {
+                                                         ^~~
+Sketch uses 17824 bytes (7%) of program storage space. Maximum is 253952 bytes.
+Global variables use 1369 bytes (16%) of dynamic memory, leaving 6823 bytes for local variables. Maximum is 8192 bytes.
+
+# arduino-cli 编译记录 2026-10-18
+arduino-cli : arduino-cli  Version: 1.5.2-rc.1 Commit: fef6e48df Date: 2026-07-23T11:13:25Z
+core        : arduino:avr 1.8.8     1.8.8  Arduino AVR Boards
+fqbn        : arduino:avr:mega
+command     : arduino-cli compile --fqbn arduino:avr:mega --warnings all --output-dir _build\out _build\AutoMeasureSort
+exitcode    : 0
+
