@@ -63,6 +63,7 @@ git switch main && git pull
 
 ## 4 PR 规矩（很简单，但请照做）
 
+- 提 PR 时页面会**自动带出 PR 模板**（`.github/pull_request_template.md`），照着填空；**"证据"一节不填的 PR 不合并**
 - 标题写清改什么；描述里贴**证据**：日志片段 / 截图 / `compile.ps1` 结果
 - 至少 1 人 review 后再合并（主控合并 `10_`、`00_`；视觉/HMI 的改动由主控或对方 review）
 - **main 只接受 PR**，不要直接往 main push
