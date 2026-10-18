@@ -40,6 +40,24 @@ git config user.email "你的 GitHub 邮箱"
 
 > ⚠️ 不要把仓库放在 **OneDrive/网盘同步目录** 里，也不要让编辑器一直占着二进制文件——之前 `ji.HMI` 被进程锁死，导致读/改/入库全部失败。
 
+## 2.5 分支保护：现状与三条路
+
+**已实测**：本仓库是**私有 + 免费账号**，GitHub 不允许开分支保护：
+
+```text
+gh api PUT .../branches/main/protection
+→ HTTP 403：Upgrade to GitHub Pro or make this repository public to enable this feature.
+```
+
+| 路线 | 做法 | 优点 | 缺点 |
+|---|---|---|---|
+| **A（推荐）** | 申请 **GitHub Student Developer Pack**（学生免费）→ 账号升级为 Pro → 运行 `.\tools\enable-branch-protection.ps1` | 服务端强制，谁都绕不过；仓库仍是私有 | 需要学生认证（学校邮箱/学生证），通常 1~3 天 |
+| B | 把仓库改成 public | 立刻能开保护 | `ji.HMI` 是同学的作品，公开需三人同意，**不建议** |
+| **C（今天就能用）** | 每台电脑跑一次 `.\tools\install-hooks.ps1`（本地 `pre-push` 钩子） | 免费、立即生效 | 只能防误操作：`--no-verify` 或 `ALLOW_MAIN_PUSH=1` 可绕过；没装钩子的电脑不受保护 |
+
+> 当前状态：**C 已启用**（本机已装）；A 等你申请学生包后执行一次 `tools/enable-branch-protection.ps1` 即可。
+> 不管有没有保护，规矩不变：**main 只接受 PR**。
+
 ## 3 日常改动五步（命令行）
 
 ```bash

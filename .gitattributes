@@ -13,6 +13,9 @@
 # PowerShell 脚本保持 CRLF
 *.ps1   text eol=crlf
 
+# git 钩子必须 LF，否则 sh 无法执行
+.githooks/* text eol=lf
+
 # 二进制：不做换行转换、不谈 diff
 *.HMI    binary
 *.tft    binary
